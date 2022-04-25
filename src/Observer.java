@@ -2,5 +2,5 @@
 public interface Observer {
     /** Updates a state of the order
      * @param state state of the order */
-    public OrderState stateUpdate(OrderState state);
+    public void stateUpdate(OrderState state);
 }
