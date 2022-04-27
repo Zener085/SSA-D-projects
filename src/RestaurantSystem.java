@@ -34,7 +34,7 @@ public class RestaurantSystem {
         }
     }
 
-    public static class OrderInfo {
+    private static class OrderInfo {
         public Order order;
         public Observer orderObserver;
         public OrderState orderState;
