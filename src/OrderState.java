@@ -1,3 +1,4 @@
+/** enumerator to store state of order */
 public enum OrderState {
     PENDING,
     COOKING,
