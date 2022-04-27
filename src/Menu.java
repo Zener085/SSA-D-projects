@@ -1,3 +1,4 @@
+/** A menu stores dishes that users can choose */
 public class Menu {
     private MenuItem[] menuItems;
 
