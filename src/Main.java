@@ -15,7 +15,6 @@ public class Main {
             System.out.println(dish);
         }
 
-        Order order = new Order();
         Scanner scanner = new Scanner(System.in);
         ArrayList<MenuItem> items = new ArrayList<>();
 
@@ -36,7 +35,7 @@ public class Main {
         }
 
         // Push the formed order to the restaurant system
-        order.items = (MenuItem[]) items.toArray(new MenuItem[0]);
+        Order order = new Order((MenuItem[]) items.toArray(new MenuItem[0]));
         system.order(order, new Observer() {
             public void stateUpdate(OrderState state) {
                 if (state == OrderState.READY) {
