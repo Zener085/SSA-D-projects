@@ -16,7 +16,7 @@ public class RestaurantSystem {
         return this.menu;
     }
 
-    /** Order adding to observation */
+    /** Make an order and observe its state */
     public void order(Order order, Observer observer) {
         this.orders.add(new OrderInfo(order, observer));
     }
