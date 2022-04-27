@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // Initialize restaurant with the menu
         Menu menu = new Menu(new MenuItem[] { new MenuItem("Chicken", new ArrayList<>(), 59.99),
                 new MenuItem("Beef Stroganoff", new ArrayList<>(), 79.89),
                 new MenuItem("Caesar Salad", new ArrayList<>(), 49.99) });
@@ -10,32 +11,31 @@ public class Main {
 
         System.out.println("What do you want today? There is a menu:");
         MenuItem[] dishes = system.getMenu().getMenuItems();
-
-        for (MenuItem dish : dishes)
+        for (MenuItem dish : dishes) {
             System.out.println(dish);
+        }
 
         Order order = new Order();
-        Scanner scan = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         ArrayList<MenuItem> items = new ArrayList<>();
 
+        // Form an order
         while (true) {
-            int index;
-            String item = scan.nextLine();
-            if (item.equals("Stop"))
+            String item = scanner.nextLine();
+            if (item.equals("Stop")) {
                 break;
+            }
 
-            if (item.equals("Chicken")) {
-                index = 0;
-            } else if (item.equals("Beef Stroganoff")) {
-                index = 1;
-            } else if (item.equals("Caesar Salad")) {
-                index = 2;
-            } else {
+            MenuItem menuItem = findMenuItem(system.getMenu(), item);
+            if (menuItem == null) {
                 System.out.println("There is no dish like that, try another.");
                 continue;
             }
-            items.add(system.getMenu().getMenuItems()[index]);
+
+            items.add(menuItem);
         }
+
+        // Push the formed order to the restaurant system
         order.items = (MenuItem[]) items.toArray(new MenuItem[0]);
         system.order(order, new Observer() {
             public void stateUpdate(OrderState state) {
@@ -44,5 +44,16 @@ public class Main {
                 }
             }
         });
+    }
+
+    private static MenuItem findMenuItem(Menu menu, String description) {
+        int index;
+        for (index = 0; index < menu.getMenuItems().length; index++) {
+            MenuItem menuItem = menu.getMenuItems()[index];
+            if (menuItem.getDescription().equals(description)) {
+                return menuItem;
+            }
+        }
+        return null;
     }
 }
