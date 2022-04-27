@@ -39,6 +39,6 @@ public class MenuItem {
     }
 
     public String toString() {
-        return description + ", стоимость: " + this.cost + ". Отзывы:" + this.ratings.toString();
+        return description + ", cost: " + this.cost + ". Reviews:" + this.ratings.toString();
     }
 }
