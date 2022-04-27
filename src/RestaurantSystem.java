@@ -16,10 +16,7 @@ public class RestaurantSystem {
     }
 
     public void order(Order order, Observer observer) {
-        this.orders.add(new OrderInfo());
-        (this.orders.get(this.orders.size() - 1)).order = order;
-        (this.orders.get(this.orders.size() - 1)).orderObserver = observer;
-        (this.orders.get(this.orders.size() - 1)).orderState = OrderState.PENDING;
+        this.orders.add(new OrderInfo(order, observer));
     }
 
     public void reserveTable(int tableID) {
@@ -42,7 +39,10 @@ public class RestaurantSystem {
         public Observer orderObserver;
         public OrderState orderState;
 
-        public OrderInfo() {
+        public OrderInfo(Order order, Observer observer) {
+            this.order = order;
+            this.orderObserver = observer;
+            this.orderState = OrderState.PENDING;
         }
 
         public boolean advanceState() {
