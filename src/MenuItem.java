@@ -1,14 +1,16 @@
+import java.util.ArrayList;
+
 /** Item (dish) of the menu */
 public class MenuItem {
     private String description; // description of the dish
-    private Rating[] ratings; // array of ratings of the dish from people
+    private ArrayList<Rating> ratings; // array of ratings of the dish from people
     private double cost; // cost of the dish
 
     /** Constructor of the menu item
      * @param description description of the dish
      * @param ratings array of ratings of the dish
      * @param cost cost of the dish */
-    public MenuItem(String description, Rating[] ratings, double cost) {
+    public MenuItem(String description, ArrayList<Rating> ratings, double cost) {
         this.description = description;
         this.ratings = ratings;
         this.cost = cost;
@@ -22,7 +24,7 @@ public class MenuItem {
 
     /** Returns ratings of the dish
      * @return array of ratings of the dish */
-    public Rating[] getRatings() {
+    public ArrayList<Rating> getRatings() {
         return ratings;
     }
 
@@ -30,5 +32,13 @@ public class MenuItem {
      * @return cost of the dish */
     public double getCost() {
         return cost;
+    }
+
+    public void rate(Rating rating) {
+        this.ratings.add(rating);
+    }
+
+    public String toString() {
+        return description + ", стоимость: " + this.cost + ". Отзывы:" + this.ratings.toString();
     }
 }

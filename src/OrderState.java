@@ -1,17 +1,16 @@
-/** States of the order */
 public enum OrderState {
-    PENDING, // When order is paid, but not started to be cooked
-    COOKING, // When restaurant cook dishes of the order
-    READY; // When order is ready to send it
+    PENDING,
+    COOKING,
+    READY;
 
-    /** Switches order to the next state
-     * @param state actual state of the order
-     * @return next state of the order */
-    public OrderState next(){
-        switch (this) {
-            case PENDING -> {return COOKING;}
-            case COOKING -> {return READY;}
-            default -> {return null;}
-        }
+    private OrderState() {
+    }
+
+    public OrderState next() {
+        return switch (this) {
+            case PENDING -> COOKING;
+            case COOKING -> READY;
+            default -> null;
+        };
     }
 }
